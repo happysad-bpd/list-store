@@ -18,9 +18,10 @@
   .header-actions .cart-link{padding-inline:12px}
   .main-nav{grid-column:1;grid-row:3;width:100%}
   .main-menu{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-  .menu-item{min-width:0}
+  .menu-item{min-width:0;z-index:1}
+  .menu-item:hover,.menu-item:focus-within{z-index:30}
   .menu-link{display:flex;align-items:center;justify-content:center;min-height:46px;padding:10px 8px;border:1px solid var(--line);background:var(--surface);font-size:14px;text-align:center}
-  .submenu{left:0;right:auto;min-width:190px;max-width:calc(100vw - 32px)}
+  .submenu{left:0;right:auto;z-index:40;min-width:190px;max-width:calc(100vw - 32px)}
   .menu-item:nth-child(even) .submenu{left:auto;right:0}
 }
 
