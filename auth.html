@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Вход и регистрация — ЛИСТ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><div class="container header-inner"><a class="logo" href="index.html">ЛИСТ<span>.</span></a><nav class="main-nav" aria-label="Основное меню"><ul class="main-menu"><li class="menu-item"><a class="menu-link" href="catalog.html">Каталог</a></li><li class="menu-item"><a class="menu-link" href="authors.html">Авторы</a></li><li class="menu-item"><a class="menu-link" href="index.html#about">Об издательстве</a></li></ul></nav><div class="header-actions"><button class="contrast-toggle" data-contrast type="button" aria-label="Режим повышенной различимости">◐</button><a class="cart-link" href="cart.html">Корзина · <span data-cart-count>0</span></a></div></div></header>
+
+  <main class="registration-layout">
+    <section class="registration-intro"><p class="eyebrow">Личный кабинет читателя</p><h1>Создайте аккаунт читателя</h1><p>Сохраняйте любимые книги, отслеживайте заказы и получайте новости издательства.</p></section>
+    <section class="registration-panel">
+      <div class="auth-tabs"><button class="active" type="button" data-auth-mode="login">Вход</button><button type="button" data-auth-mode="register">Регистрация</button></div>
+      <form class="registration-form" data-auth-form>
+        <h2>Данные читателя</h2>
+        <label data-register-field hidden>Имя и фамилия<input type="text" name="name" maxlength="50" pattern="[А-Яа-яЁёA-Za-z\s-]{2,50}" placeholder="Юлиана Донченко" title="Введите от 2 до 50 букв" data-register-required></label>
+        <label>Электронная почта<input type="email" name="email" maxlength="80" placeholder="name@example.com" required autocomplete="email"></label>
+        <label>Пароль<input type="password" name="password" minlength="8" maxlength="24" pattern="(?=.*[A-Za-z])(?=.*\d).{8,24}" placeholder="Буквы и цифры, не менее 8 символов" required autocomplete="current-password"></label>
+        <label data-register-field hidden>Возраст<input type="number" name="age" min="14" max="120" placeholder="22" data-register-required></label>
+        <label data-register-field hidden>Любимый жанр<select name="genre" data-register-required><option value="" selected disabled>Выберите жанр</option><option>Художественная литература</option><option>Детские книги</option><option>Искусство и культура</option><option>Научно-популярная литература</option></select></label>
+        <fieldset data-register-field hidden><legend>Предпочитаемый формат</legend><label class="choice"><input type="radio" name="format" value="paper" data-register-required> Бумажная книга</label><label class="choice"><input type="radio" name="format" value="ebook"> Электронная книга</label></fieldset>
+        <fieldset data-register-field hidden><legend>Как получать заказ</legend><label class="choice"><input type="radio" name="delivery" value="courier" data-register-required> Курьером</label><label class="choice"><input type="radio" name="delivery" value="pickup"> Самовывоз</label></fieldset>
+        <fieldset data-register-field hidden><legend>Интересы</legend><label class="choice"><input type="checkbox" name="interest" value="new"> Новинки</label><label class="choice"><input type="checkbox" name="interest" value="sales"> Скидки</label><label class="choice"><input type="checkbox" name="interest" value="events"> Встречи с авторами</label></fieldset>
+        <label data-register-field hidden>Аватар или документ<input type="file" name="file" accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf"></label>
+        <label data-register-field hidden>Комментарий<textarea name="comment" maxlength="300" rows="4" placeholder="Расскажите, какие книги вы любите"></textarea></label>
+        <label class="choice" data-register-field hidden><input type="checkbox" name="agreement" data-register-required> Я принимаю правила обработки данных</label>
+        <div class="registration-actions"><button class="button" type="submit" data-auth-submit>Войти</button><button class="button secondary" type="reset">Очистить</button></div>
+      </form>
+      <p class="auth-help">Вход администратора: admin@list.ru / admin123</p>
+    </section>
+  </main>
+</body>
+</html>
