@@ -23,3 +23,5 @@
   .submenu{left:0;right:auto;min-width:190px;max-width:calc(100vw - 32px)}
   .menu-item:nth-child(even) .submenu{left:auto;right:0}
 }
+
+.book-cover strong,.product-cover strong,.mini-cover{max-width:100%;overflow-wrap:anywhere;word-break:break-word;hyphens:auto}.payment-consent{display:flex;align-items:flex-start;gap:10px;padding:12px 0;font-weight:700}.payment-consent input{flex:0 0 auto;width:18px;height:18px;margin:2px 0 0}.checkout-submit{gap:.55em}

@@ -50,7 +50,6 @@ function bookCard(book) {
   article.dataset.genre = book.genre;
   article.innerHTML = `
     <a class="book-cover" href="product.html?id=${book.id}" style="--cover:${book.color}" aria-label="Открыть книгу ${book.title}">
-      <span class="cover-number">${String(book.id).padStart(2, '0')}</span>
       ${book.badge ? `<span class="badge">${book.badge}</span>` : ''}
       <strong>${book.title.replace(' ', '<br>')}</strong>
     </a>
@@ -96,7 +95,7 @@ function initProduct() {
   if (!book) { location.href = '404.html'; return; }
   document.title = `${book.title} — ЛИСТ`;
   root.innerHTML = `
-    <div class="product-cover" style="--cover:${book.color}"><span>${String(book.id).padStart(2, '0')}</span><strong>${book.title.replace(' ', '<br>')}</strong></div>
+    <div class="product-cover" style="--cover:${book.color}"><strong>${book.title.replace(' ', '<br>')}</strong></div>
     <div class="product-info"><p class="eyebrow">${book.genre} · ${book.age}</p><h1>${book.title}</h1><p class="product-author">${book.author}</p><p>${book.description}</p>
     <dl><div><dt>Издательство</dt><dd>ЛИСТ</dd></div><div><dt>Формат</dt><dd>Твёрдая обложка</dd></div><div><dt>Язык</dt><dd>Русский</dd></div></dl>
     <div class="product-action"><strong>${money(book.price)}</strong><button class="button" data-add="${book.id}">Добавить в корзину</button></div></div>`;
