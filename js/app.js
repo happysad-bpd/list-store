@@ -242,16 +242,16 @@ function initSharedHeader() {
       <div class="header-panel" id="mobile-menu">
         <nav class="main-nav" aria-label="Основное меню">
           <ul class="main-menu">
-            <li class="menu-item"><a class="menu-link" href="catalog.html">Книги</a>
+            <li class="menu-item"><a class="menu-link" href="catalog.html">Книги</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Показать подразделы: Книги">⌄</button>
               <ul class="submenu"><li><a href="catalog.html">Все книги</a></li><li><a href="index.html#new">Новинки</a></li><li><a href="catalog.html#filters">Жанры</a></li></ul>
             </li>
-            <li class="menu-item"><a class="menu-link" href="index.html#news">Читателям</a>
+            <li class="menu-item"><a class="menu-link" href="index.html#news">Читателям</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Показать подразделы: Читателям">⌄</button>
               <ul class="submenu"><li><a href="index.html#news">Новости</a></li><li><a href="profile.html">Мои заказы</a></li><li><a href="cart.html">Корзина</a></li></ul>
             </li>
-            <li class="menu-item"><a class="menu-link" href="index.html#about">Издательство</a>
+            <li class="menu-item"><a class="menu-link" href="index.html#about">Издательство</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Показать подразделы: Издательство">⌄</button>
               <ul class="submenu"><li><a href="index.html#about">О нас</a></li><li><a href="authors.html">Авторы</a></li><li><a href="index.html#contacts">Контакты</a></li></ul>
             </li>
-            <li class="menu-item"><a class="menu-link" href="index.html#contacts">Помощь</a>
+            <li class="menu-item"><a class="menu-link" href="index.html#contacts">Помощь</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Показать подразделы: Помощь">⌄</button>
               <ul class="submenu"><li><a href="checkout.html">Доставка</a></li><li><a href="checkout.html">Оплата</a></li><li><a href="404.html">Вопросы</a></li></ul>
             </li>
           </ul>
@@ -279,6 +279,18 @@ function initSharedHeader() {
     panel.classList.toggle('open', open);
   });
   panel.addEventListener('click', event => {
+    const toggle = event.target.closest('.submenu-toggle');
+    if (toggle && window.matchMedia('(max-width: 760px)').matches) {
+      const item = toggle.closest('.menu-item');
+      const willOpen = !item.classList.contains('submenu-open');
+      panel.querySelectorAll('.menu-item.submenu-open').forEach(openItem => {
+        openItem.classList.remove('submenu-open');
+        openItem.querySelector('.submenu-toggle')?.setAttribute('aria-expanded', 'false');
+      });
+      item.classList.toggle('submenu-open', willOpen);
+      toggle.setAttribute('aria-expanded', String(willOpen));
+      return;
+    }
     if (event.target.closest('a') && window.matchMedia('(max-width: 760px)').matches) closeMenu();
   });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
