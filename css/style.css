@@ -26,3 +26,48 @@
 }
 
 .book-cover strong,.product-cover strong,.mini-cover{max-width:100%;overflow-wrap:anywhere;word-break:break-word;hyphens:auto}.payment-consent{display:flex;align-items:flex-start;gap:10px;padding:12px 0;font-weight:700}.payment-consent input{flex:0 0 auto;width:18px;height:18px;margin:2px 0 0}.checkout-submit{gap:.55em}
+
+/* Единая закрепленная шапка и мобильное бургер-меню */
+.site-header{position:sticky;top:0;z-index:1000;box-shadow:0 5px 18px rgba(32,51,43,.08)}
+.header-panel{display:contents}
+.burger-button{display:none}
+#news,#new,#about,#contacts,#filters{scroll-margin-top:96px}
+.cart-layout .summary{position:sticky;top:96px}
+.checkout-submit{position:sticky;bottom:16px;z-index:20;box-shadow:0 8px 24px rgba(32,51,43,.22)}
+
+@media(max-width:760px){
+  body{padding-bottom:12px}
+  .site-header{padding:0}
+  .header-inner{position:relative;display:grid;grid-template-columns:1fr auto;gap:12px;min-height:64px;padding:10px 0}
+  .logo{position:static;grid-column:1;grid-row:1;align-self:center;justify-self:start;font-size:29px}
+  .burger-button{grid-column:2;grid-row:1;display:grid;place-content:center;gap:5px;width:46px;height:44px;padding:9px;border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
+  .burger-button span{display:block;width:24px;height:2px;background:currentColor;transition:transform .2s ease,opacity .2s ease}
+  .burger-button[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger-button[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger-button[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .header-panel{position:absolute;left:-16px;right:-16px;top:100%;display:none;max-height:calc(100vh - 64px);overflow:auto;padding:10px 16px 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);box-shadow:0 15px 25px rgba(32,51,43,.16)}
+  .header-panel.open{display:block}
+  .main-nav{width:100%}
+  .main-menu{display:grid;grid-template-columns:1fr;gap:6px}
+  .menu-item{z-index:auto}
+  .menu-link{justify-content:flex-start;min-height:44px;padding:10px 12px;text-align:left}
+  .submenu{position:static;display:block;min-width:0;padding:0 0 5px 18px!important;border:0;background:transparent;box-shadow:none}
+  .submenu a{padding:7px 12px;color:var(--muted)}
+  .header-actions{position:static;display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%;margin-top:10px}
+  .header-actions a,.header-actions .link-button,.contrast-toggle{min-height:46px;white-space:normal}
+  .header-actions .cart-link{padding-inline:10px}
+  #news,#new,#about,#contacts,#filters{scroll-margin-top:76px}
+  .cart-layout{position:relative;padding:24px 0 48px}
+  .cart-layout .summary{grid-row:1;position:sticky;top:76px;z-index:30;padding:14px 16px;box-shadow:0 8px 22px rgba(32,51,43,.16)}
+  .cart-layout .summary h2{margin:0 0 8px;font-size:20px}
+  .cart-layout .summary-line{margin-bottom:10px;font-size:16px}
+  [data-cart]{grid-row:2}
+  .cart-row{grid-template-columns:62px minmax(0,1fr) auto;gap:10px;padding:11px 0}
+  .mini-cover{height:88px;padding:7px;font-size:11px}
+  .cart-row h3{font-size:18px;overflow-wrap:anywhere}
+  .cart-row .quantity{grid-column:2;justify-self:start}
+  .quantity button,.icon-button{width:48px;height:48px;font-size:24px}
+  .quantity span{min-width:34px;text-align:center;font-weight:700}
+  .cart-row .icon-button{grid-column:3;grid-row:1;border:1px solid var(--line);background:var(--surface)}
+  .checkout-submit{bottom:12px;min-height:54px;font-size:16px}
+}

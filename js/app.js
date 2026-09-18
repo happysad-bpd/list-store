@@ -229,6 +229,68 @@ document.addEventListener('click', event => {
   if (button) addToCart(button.dataset.add);
 });
 
+function initSharedHeader() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  header.innerHTML = `
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="ЛИСТ — на главную">ЛИСТ<span>.</span></a>
+      <button class="burger-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="header-panel" id="mobile-menu">
+        <nav class="main-nav" aria-label="Основное меню">
+          <ul class="main-menu">
+            <li class="menu-item"><a class="menu-link" href="catalog.html">Книги</a>
+              <ul class="submenu"><li><a href="catalog.html">Все книги</a></li><li><a href="index.html#new">Новинки</a></li><li><a href="catalog.html#filters">Жанры</a></li></ul>
+            </li>
+            <li class="menu-item"><a class="menu-link" href="index.html#news">Читателям</a>
+              <ul class="submenu"><li><a href="index.html#news">Новости</a></li><li><a href="profile.html">Мои заказы</a></li><li><a href="cart.html">Корзина</a></li></ul>
+            </li>
+            <li class="menu-item"><a class="menu-link" href="index.html#about">Издательство</a>
+              <ul class="submenu"><li><a href="index.html#about">О нас</a></li><li><a href="authors.html">Авторы</a></li><li><a href="index.html#contacts">Контакты</a></li></ul>
+            </li>
+            <li class="menu-item"><a class="menu-link" href="index.html#contacts">Помощь</a>
+              <ul class="submenu"><li><a href="checkout.html">Доставка</a></li><li><a href="checkout.html">Оплата</a></li><li><a href="404.html">Вопросы</a></li></ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="contrast-toggle" data-contrast type="button" aria-pressed="false">Для дальтоников</button>
+          <a data-user-link href="auth.html">Войти</a>
+          <a class="cart-link" href="cart.html">Корзина · <span data-cart-count>0</span></a>
+          <button class="header-logout link-button" type="button" data-header-logout hidden>Выйти</button>
+        </div>
+      </div>
+    </div>`;
+
+  const burger = header.querySelector('.burger-button');
+  const panel = header.querySelector('.header-panel');
+  const closeMenu = () => {
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Открыть меню');
+    panel.classList.remove('open');
+  };
+  burger.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') !== 'true';
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    panel.classList.toggle('open', open);
+  });
+  panel.addEventListener('click', event => {
+    if (event.target.closest('a') && window.matchMedia('(max-width: 760px)').matches) closeMenu();
+  });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+
+  const logout = header.querySelector('[data-header-logout]');
+  if (state.user) logout.hidden = false;
+  logout.addEventListener('click', () => {
+    localStorage.removeItem('list-user');
+    location.href = 'index.html';
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  updateHeader(); initTheme(); initCatalog(); initProduct(); initCart(); initAuth(); initCheckout(); initProfile();
+  initSharedHeader(); updateHeader(); initTheme(); initCatalog(); initProduct(); initCart(); initAuth(); initCheckout(); initProfile();
 });
